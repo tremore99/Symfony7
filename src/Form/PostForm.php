@@ -28,13 +28,7 @@ class PostForm extends AbstractType
                     'class' => 'form-control',
                     'placeholder' => 'Content'
                 ]
-            ])
-            ->add('save', SubmitType::class, [
-                'attr' => [
-                    'class' => 'btn btn-primary mt-4',
-                ]
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
