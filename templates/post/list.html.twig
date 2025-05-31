@@ -25,11 +25,39 @@
                 <td class="col-sm-4">{{ post.title }}</td>
                 <td class="col-sm-4">{{ post.content }}</td>
                 <td class="col-sm-3">
-                    <a href="{{ path('edit-post', {id: post.id}) }}" class="btn btn-success">Edit</a>
-                    <a href="{{ path('delete-post', {id: post.id}) }}" class="btn btn-danger">Delete</a>
+                    <a href="{{ path('edit-post', {id: post.id}) }}" data-id="{{ post.id }}" class="btn btn-success js-edit">Edit</a>
+                    <span data-id="{{ post.id }}" class="btn btn-danger js-delete">Delete</span>
                 </td>
             </tr>
         {% endfor %}
     </tbody>
 </table>
+
+<script>
+    $(function () {
+        // showing an alert to the user, because he clicked on the delete button
+        $('.js-delete').on('click', function () {
+            showCustomModal({
+                title: 'Alert',
+                message: 'Are you sure you want to delete the post?',
+                type: 'danger',
+                buttons: [
+                    {
+                        label: 'No',
+                        class: 'btn btn-secondary'
+                    },
+                    {
+                        label: 'OK',
+                        class: 'btn btn-danger',
+                        onClick: () => {
+                            $.post('/delete-post/' + $(this).data('id'), function () {
+                                location.reload();
+                            });
+                        }
+                    }
+                ]
+            });
+        });
+    });
+</script>
 {% endblock %}
