@@ -17,6 +17,7 @@
                     </div>
                     <div class="form-group mt-2">
                         <label for="{{ form.password.vars.id }}">{{ form.password.vars.label }}</label>
+                        {{ form_errors(form.password) }}
                         <div class="position-relative">
                             {{ form_widget(form.password) }}
                             <span class="toggle-password prevent-select" onClick="togglePassword($(this))">
