@@ -37,6 +37,10 @@ function showCustomModal({title = "Notice", message = "", buttons = [], type = "
     modal.show();
 }
 
-function togglePassword(button) {
-    
+window.togglePassword = function (button) {
+    const $input = button.siblings('input');
+    const type = $input.attr('type') === 'password' ? 'text' : 'password';
+    $input.attr('type', type);
+
+    button.children('i').toggleClass('bi-eye bi-eye-slash');
 }

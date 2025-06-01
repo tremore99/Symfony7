@@ -19,8 +19,8 @@
                         <label for="{{ form.password.vars.id }}">{{ form.password.vars.label }}</label>
                         <div class="position-relative">
                             {{ form_widget(form.password) }}
-                            <span class="toggle-password">
-                                <i class="bi bi-eye"></i>
+                            <span class="toggle-password prevent-select" onClick="togglePassword($(this))">
+                                <i class="bi bi-eye-slash"></i>
                             </span>
                         </div>
                     </div>
