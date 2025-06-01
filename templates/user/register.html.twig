@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="mt-4 flex">
+        <div class="col-sm-6">
+            <h3 class="text-center">Register</h3>
+            <div class="container">
+                {{ form_start(form) }}
+                    <div class="form-group">
+                        {{ form_row(form.loginname) }}
+                    </div>
+                    <div class="form-group mt-2">
+                        {{ form_row(form.name) }}
+                    </div>
+                    <div class="form-group mt-2">
+                        {{ form_row(form.email) }}
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="{{ form.password.vars.id }}">{{ form.password.vars.label }}</label>
+                        <div class="position-relative">
+                            {{ form_widget(form.password) }}
+                            <span class="toggle-password">
+                                <i class="bi bi-eye"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex">
+                        <button type="submit" class="btn btn-primary width-50 mx-auto">Register</button>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+        <div class="col-sm-6 flex flex-align-center">
+            <div class="container flex flex-align-center flex-direction-col">
+                <h3 class="text-center">Have an account?</h3>
+                <a href="/login" class="btn btn-primary width-50">Login</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

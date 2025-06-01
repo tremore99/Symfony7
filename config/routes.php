@@ -2,6 +2,7 @@
 
 use App\Controller\MainController;
 use App\Controller\PostController;
+use App\Controller\UserController;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 return function (RoutingConfigurator $routes): void {
@@ -21,5 +22,11 @@ return function (RoutingConfigurator $routes): void {
 
     $routes->add('delete-post', '/delete-post/{id}')
         ->controller([PostController::class, 'deletePost']);
+
+    $routes->add('login', '/login')
+        ->controller([UserController::class, 'login']);
+
+    $routes->add('register', '/register')
+        ->controller([UserController::class, 'register']);
 };
 ?>
