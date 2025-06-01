@@ -1,3 +1,72 @@
+@use 'colors';
+@use 'sass:color';
+
 body {
-    background-color: lightgray;
+    background-color: #d3d3d3;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.width-auto {
+    width: auto;
+}
+
+.btn-primary {
+    background-color: colors.$primary-color;
+    color: colors.$white;
+    border-color: colors.$primary-color;
+
+    &:hover {
+        background-color: color.adjust(colors.$primary-color, $lightness: 15%);
+        border-color: color.adjust(colors.$primary-color, $lightness: 15%);
+    }
+}
+
+.position-relative {
+    position: relative;
+}
+
+@for $i from 10 through 40 {
+    .size-#{$i} {
+        font-size: #{$i}px;
+    }
+}
+
+@for $i from 0 through 100 {
+    @if $i % 5 == 0 {
+        .width-#{$i} {
+            width: #{$i + '%'};
+        }
+    }
+}
+
+@for $i from 0 through 20 {
+    .gap-#{$i} {
+        gap: #{$i}px;
+    }
+}
+
+@for $i from 0 through 20 {
+    .column-gap-#{$i} {
+        column-gap: #{$i}px;
+    }
+}
+
+@for $i from 0 through 20 {
+    .row-gap-#{$i} {
+        row-gap: #{$i}px;
+    }
+}
+
+.toggle-password {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
 }

@@ -1,0 +1,24 @@
+$primary-color: #212529;
+$secondary-color: #292521;
+$white: #fff;
+$background: #d3d3d3;
+
+.color-primary {
+    color: $primary-color;
+}
+
+.color-secondary {
+    color: $secondary-color;
+}
+
+.color-white {
+    color: $white;
+}
+
+.bg-color-primary {
+    background-color: $primary-color;
+}
+
+.bg-color-secondary {
+    background-color: $secondary-color;
+}
