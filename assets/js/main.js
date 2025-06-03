@@ -44,3 +44,21 @@ window.togglePassword = function (button) {
 
     button.children('i').toggleClass('bi-eye bi-eye-slash');
 }
+
+window.showAlert = function(message, type, durration = 3000) {
+    const $alertContainer = $('#alert-container');
+    const $alert = $('<div>', {
+        class: 'custom-alert ' + type,
+        text: message
+    })
+
+    $alertContainer.append($alert);
+
+    setTimeout(() => {
+        $alert.addClass('fade-out');
+
+        setTimeout(() => {
+            $alert.remove();
+        }, 500);
+    }, durration);
+}
