@@ -30,9 +30,17 @@
                         <a class="nav-link color-white" href="/create-post">Create Post</a>
                     </li>
                 </ul>
-                <a href="/login">
-                    <i class="bi bi-door-open color-white size-24"></i>
-                </a>
+                
+                {% if app.user %}
+                    <a href="/profile" class="flex flex-align-center default-text">
+                        <span class="me-2">{{ app.user.username }}</span>
+                        <i class="bi bi-person-circle size-24"></i>
+                    </a>
+                {% else %}
+                    <a href="/login">
+                        <i class="bi bi-door-open color-white size-24"></i>
+                    </a>
+                {% endif %}    
             </div>
         </nav>
         <div class="container">
@@ -51,5 +59,7 @@
                 </div>
             </div>
         </div>
+
+        <div id="alert-container"></div>
     </body>
 </html>

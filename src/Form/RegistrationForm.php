@@ -34,12 +34,14 @@ class RegistrationForm extends AbstractType
                 ],
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Enter your email'
+                    'placeholder' => 'Enter your email',
+                    'autocomplete' => 'email'
                 ]
             ])
             ->add('password', PasswordType::class, [
                 'label' => 'Password',
-                'required' => true,
+                'required' => false,
+                'mapped' => false,
                 'constraints' => [
                     new Regex([
                         'pattern' => '/[A-Z]/',
@@ -56,7 +58,8 @@ class RegistrationForm extends AbstractType
                 ],
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Enter your password'
+                    'placeholder' => 'Enter your password',
+                    'autocomplete' => 'new-password'
                 ]
             ])
             ->add('username', TextType::class, [
@@ -72,7 +75,10 @@ class RegistrationForm extends AbstractType
                 ],
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Enter your full name'
+                    'placeholder' => 'Enter your full name',
+                    'autocomplete' => 'new-username',
+                    'tabindex' => '-1',
+                    'aria-hidden' => true
                 ]
             ]);
     }

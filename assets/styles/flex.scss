@@ -3,21 +3,31 @@
 }
 
 .flex-justify-space-between {
+    display: flex;
     justify-content: space-between;
 }
 
 .flex-justify-center {
+    display: flex;
     justify-content: center;
 }
 
+.flex-justify-end {
+    display: flex;
+    justify-content: end;
+}
+
 .flex-align-center {
+    display: flex;
     align-items: center;
 }
 
 .flex-wrap {
+    display: flex;
     flex-wrap: wrap;
 }
 
 .flex-direction-col {
+    display: flex;
     flex-direction: column;
 }
