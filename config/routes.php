@@ -3,7 +3,7 @@
 use App\Controller\MainController;
 use App\Controller\PostController;
 use App\Controller\LoginController;
-use App\Controller\RegistrationController;
+use App\Controller\UserController;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 return function (RoutingConfigurator $routes): void {
@@ -31,6 +31,9 @@ return function (RoutingConfigurator $routes): void {
         ->controller([LoginController::class, 'logout']);
 
     $routes->add('register', '/register')
-        ->controller([RegistrationController::class, 'register']);
+        ->controller([UserController::class, 'register']);
+
+    $routes->add('profile', '/profile')
+        ->controller([UserController::class, 'update']);
 };
 ?>
