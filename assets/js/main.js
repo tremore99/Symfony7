@@ -1,4 +1,4 @@
-function showCustomModal({title = "Notice", message = "", buttons = [], type = ""}) {
+window.showCustomModal = function({title = "Notice", message = "", buttons = [], type = ""}) {
     const alertModal = document.getElementById("bootstrapAlertModal");
     const $header = $(".modal-header");
 

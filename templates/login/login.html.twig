@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    <div class="mt-4 flex">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        
+        <div class="col-sm-6">
+            <h3 class="text-center">Login</h3>
+            <div class="container">
+                <form method="post">
+                    {% if app.user %}
+                        <div class="mb-3">
+                            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('logout') }}">Logout</a>
+                        </div>
+                    {% endif %}
+
+                    <label for="email">Email</label>
+                    <input type="text" name="_email" id="email" class="form-control" autocomplete="email" required autofocus>
+                    <label for="password">Password</label>
+                    <div class="position-relative">
+                            <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
+                            <span class="toggle-password prevent-select" onClick="togglePassword($(this))">
+                                <i class="bi bi-eye-slash"></i>
+                            </span>
+                        </div>
+                    <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+
+                    <div class="mt-4 flex">
+                        <button class="btn btn-primary width-50 mx-auto" type="submit">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-6 flex flex-align-center">
+            <div class="container flex flex-align-center flex-direction-col">
+                <h3 class="text-center">Don't have an account yet?</h3>
+                <a href="/register" class="btn btn-primary width-50">Register</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -2,7 +2,8 @@
 
 use App\Controller\MainController;
 use App\Controller\PostController;
-use App\Controller\UserController;
+use App\Controller\LoginController;
+use App\Controller\RegistrationController;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 return function (RoutingConfigurator $routes): void {
@@ -24,9 +25,12 @@ return function (RoutingConfigurator $routes): void {
         ->controller([PostController::class, 'deletePost']);
 
     $routes->add('login', '/login')
-        ->controller([UserController::class, 'login']);
+        ->controller([LoginController::class, 'login']);
+
+    $routes->add('logout', '/logout')
+        ->controller([LoginController::class, 'logout']);
 
     $routes->add('register', '/register')
-        ->controller([UserController::class, 'register']);
+        ->controller([RegistrationController::class, 'register']);
 };
 ?>

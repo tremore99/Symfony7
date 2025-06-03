@@ -1,0 +1,12 @@
+[01-Jun-2025 20:41:27 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Symfony\Bundle\FrameworkBundle\Controller\AbstractController" not found in F:\Projects\PHP\Symfony\Symfony7\src\Controller\LoginController.php:10
+Stack trace:
+#0 {main}
+  thrown in F:\Projects\PHP\Symfony\Symfony7\src\Controller\LoginController.php on line 10
+[01-Jun-2025 20:41:37 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Symfony\Bundle\FrameworkBundle\Controller\AbstractController" not found in F:\Projects\PHP\Symfony\Symfony7\src\Controller\LoginController.php:10
+Stack trace:
+#0 {main}
+  thrown in F:\Projects\PHP\Symfony\Symfony7\src\Controller\LoginController.php on line 10
+[01-Jun-2025 20:41:40 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Symfony\Bundle\FrameworkBundle\Controller\AbstractController" not found in F:\Projects\PHP\Symfony\Symfony7\src\Controller\LoginController.php:10
+Stack trace:
+#0 {main}
+  thrown in F:\Projects\PHP\Symfony\Symfony7\src\Controller\LoginController.php on line 10

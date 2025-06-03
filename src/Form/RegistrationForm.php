@@ -4,41 +4,25 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\Regex;
 
-class RegisterForm extends AbstractType
+class RegistrationForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('loginname', TextType::class, [
-                'label' => 'Login name',
-                'required' => true,
-                'constraints' => [
-                    new Length([
-                        'min' => 4,
-                        'max' => 100,
-                        'minMessage' => 'Login name must be at least {{ limit }} characters long.',
-                        'maxMessage' => 'Login name cannot be longer than {{ limit }} characters.'
-                    ])
-                ],
-                'attr' => [
-                    'class' => 'form-control',
-                    'placeholder' => 'Enter your login name'
-                ]
-            ])
             ->add('email', EmailType::class, [
                 'label' => 'Email',
                 'required' => true,
                 'constraints' => [
                     new Regex([
-                        'pattern' => '/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/',
+                        'pattern' => '/\b[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\b/',
                         'message' => 'Email is not well formed'
                     ]),
                     new Length([
@@ -75,9 +59,17 @@ class RegisterForm extends AbstractType
                     'placeholder' => 'Enter your password'
                 ]
             ])
-            ->add('name', TextType::class, [
+            ->add('username', TextType::class, [
                 'label' => 'Name',
                 'required' => true,
+                'constraints' => [
+                    new Length([
+                        'min' => 4,
+                        'max' => 100,
+                        'minMessage' => 'User name must be at least {{ limit }} characters long.',
+                        'maxMessage' => 'User name cannot be longer than {{ limit }} characters.'
+                    ])
+                ],
                 'attr' => [
                     'class' => 'form-control',
                     'placeholder' => 'Enter your full name'
