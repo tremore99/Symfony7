@@ -21,7 +21,6 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $pass = $form->get('password')->getData();
 
-
             $userService->save($user, $pass);
 
             return $this->redirectToRoute('app-main');
@@ -36,6 +35,10 @@ class UserController extends AbstractController
 
     public function update(Request $request, UserService $userService): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('login');
+        }
+
         /** @var User $user */
         $user = $this->getUser();
         $form = $this->createForm(RegistrationForm::class, $user);

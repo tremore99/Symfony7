@@ -1,6 +1,11 @@
 @use 'colors';
 @use 'sass:color';
 
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
 body {
     background-color: #d3d3d3;
 }
@@ -122,5 +127,17 @@ body {
             opacity: 0;
             transform: translateX(100%);
         }
+    }
+}
+
+.error-container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 56px);
+    align-items: center;
+    padding-top: 5%;
+
+    i {
+        font-size: 70px;
     }
 }
