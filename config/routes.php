@@ -8,20 +8,18 @@ use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 return function (RoutingConfigurator $routes): void {
     $routes->add('app-main', '/')
-        ->controller([MainController::class, 'index'])
-        ->methods(['GET']);
+        ->controller([MainController::class, 'index']);
     
-    $routes->add('create-post', '/create-post')
-        ->controller([PostController::class, 'createPost'])
-        ->methods(['GET', 'POST']);
+    $routes->add('create-post', '/post/create')
+        ->controller([PostController::class, 'createPost']);
 
-    $routes->add('list-posts', '/list-posts')
+    $routes->add('list-post', '/post/list')
         ->controller([PostController::class, 'listAllPosts']);
 
-    $routes->add('edit-post', '/edit-post/{id}')
+    $routes->add('edit-post', '/post/edit-{id}')
         ->controller([PostController::class, 'editPost']);
 
-    $routes->add('delete-post', '/delete-post/{id}')
+    $routes->add('delete-post', '/post/delete-{id}')
         ->controller([PostController::class, 'deletePost']);
 
     $routes->add('login', '/login')

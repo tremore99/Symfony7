@@ -7,7 +7,9 @@ use App\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 final class PostController extends AbstractController
 {
@@ -27,16 +29,21 @@ final class PostController extends AbstractController
 
     public function createPost(Request $request): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('login');
+        }
+
         $post = new Post();
         $form = $this->createForm(PostForm::class, $post);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $post->setUser($this->getUser());
             $this->emi->persist($post);
             $this->emi->flush();
 
             $this->addFlash('message', 'Inserted successfully!');
-            return $this->redirectToRoute('list-posts');
+            return $this->redirectToRoute('list-post');
         }
 
         $model = [
@@ -50,6 +57,14 @@ final class PostController extends AbstractController
 
     public function editPost(Post $post, Request $request): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('login');
+        }
+
+        if ($post->getUser() === $this->getUser()) {
+            throw new AccessDeniedException("You can't go here.");
+        }
+
         $form = $this->createForm(PostForm::class, $post);
 
         $form->handleRequest($request);
@@ -58,7 +73,7 @@ final class PostController extends AbstractController
             $this->emi->flush();
 
             $this->addFlash('message', 'Edited successfully!');
-            return $this->redirectToRoute('list-posts');
+            return $this->redirectToRoute('list-post');
         }
 
         $model = [

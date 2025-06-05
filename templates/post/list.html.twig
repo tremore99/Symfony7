@@ -50,8 +50,10 @@
                         label: 'OK',
                         class: 'btn btn-danger',
                         onClick: () => {
-                            $.post('/delete-post/' + $(this).data('id'), function () {
+                            $.post('/post/delete-' + $(this).data('id'), function () {
                                 location.reload();
+
+                                // TODO make it seemless without reload
                             });
                         }
                     }
