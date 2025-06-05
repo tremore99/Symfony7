@@ -1,3 +1,41 @@
+$(() => {
+    function togglePassword(button) {
+        const $input = button.siblings('input');
+        const type = $input.attr('type') === 'password' ? 'text' : 'password';
+        $input.attr('type', type);
+
+        button.children('i').toggleClass('bi-eye bi-eye-slash');
+    }
+
+    function showAlert(message, type, durration = 3000) {
+        const $alertContainer = $('#alert-container');
+        const $alert = $('<div>', {
+            class: 'custom-alert ' + type,
+            text: message
+        })
+
+        $alertContainer.append($alert);
+
+        setTimeout(() => {
+            $alert.addClass('fade-out');
+
+            setTimeout(() => {
+                $alert.remove();
+            }, 500);
+        }, durration);
+    }
+
+    $('.js-dropdown').on('click', function () {
+        $(this).children('.dropdown-menu').toggleClass('show').focus();
+    });
+
+    // to always hide it, when clicking somewhere else
+    /*
+    $('.dropdown-menu').on('focusout', function() { 
+        $(this).hide();
+    });*/
+});
+
 window.showCustomModal = function({title = "Notice", message = "", buttons = [], type = ""}) {
     const alertModal = document.getElementById("bootstrapAlertModal");
     const $header = $(".modal-header");
@@ -35,30 +73,4 @@ window.showCustomModal = function({title = "Notice", message = "", buttons = [],
     // Show modal
     const modal = new bootstrap.Modal(alertModal);
     modal.show();
-}
-
-window.togglePassword = function (button) {
-    const $input = button.siblings('input');
-    const type = $input.attr('type') === 'password' ? 'text' : 'password';
-    $input.attr('type', type);
-
-    button.children('i').toggleClass('bi-eye bi-eye-slash');
-}
-
-window.showAlert = function(message, type, durration = 3000) {
-    const $alertContainer = $('#alert-container');
-    const $alert = $('<div>', {
-        class: 'custom-alert ' + type,
-        text: message
-    })
-
-    $alertContainer.append($alert);
-
-    setTimeout(() => {
-        $alert.addClass('fade-out');
-
-        setTimeout(() => {
-            $alert.remove();
-        }, 500);
-    }, durration);
 }
