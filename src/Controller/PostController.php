@@ -58,7 +58,7 @@ final class PostController extends AbstractController
                 return $this->redirectToRoute('list-post');
             }
 
-            $post->setImage($newFilename);
+            $post->setImage('uploads/images/' . $newFilename);
 
             $this->emi->persist($post);
             $this->emi->flush();

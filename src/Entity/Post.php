@@ -77,9 +77,4 @@ class Post
         
         return $this;
     }
-
-    public function getImagePath(): string
-    {
-        return 'uploads/images/' . $this->image;
-    }
 }
