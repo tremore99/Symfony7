@@ -61,7 +61,7 @@ final class PostController extends AbstractController
             return $this->redirectToRoute('login');
         }
 
-        if ($post->getUser() === $this->getUser()) {
+        if ($post->getUser() !== $this->getUser()) {
             throw new AccessDeniedException("You can't go here.");
         }
 
