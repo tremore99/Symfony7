@@ -9,7 +9,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 final class PostController extends AbstractController
 {
@@ -27,7 +29,7 @@ final class PostController extends AbstractController
         return $this->render('post/list.html.twig', ['posts' => $posts]);
     }
 
-    public function createPost(Request $request): Response
+    public function createPost(Request $request, SluggerInterface $slugger): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('login');
@@ -39,6 +41,25 @@ final class PostController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setUser($this->getUser());
+
+            $imageFile = $form->get('image')->getData();
+
+            $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugger->slug($originalFilename);
+            $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+
+            try {
+                $imageFile->move(
+                    $this->getParameter('images_directory'),
+                    $newFilename
+                );
+            } catch (FileException $e) {
+                $this->addFlash('message', 'Couldnt save the post');
+                return $this->redirectToRoute('list-post');
+            }
+
+            $post->setImage($newFilename);
+
             $this->emi->persist($post);
             $this->emi->flush();
 

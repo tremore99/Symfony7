@@ -19,6 +19,9 @@ class Post
     #[ORM\Column(length: 255)]
     private ?string $content = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
     #[ORM\ManyToOne(User::class, inversedBy: 'posts')]
     private ?User $user = null;
 
@@ -61,5 +64,22 @@ class Post
         $this->content = $content;
 
         return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
+        
+        return $this;
+    }
+
+    public function getImagePath(): string
+    {
+        return 'uploads/images/' . $this->image;
     }
 }

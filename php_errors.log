@@ -1,9 +1,0 @@
-[31-May-2025 20:46:12 Europe/Berlin] [critical] Error thrown while running command "make:migration". Message: "An exception occurred in the driver: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it"
-[31-May-2025 20:47:58 Europe/Berlin] [critical] Error thrown while running command ""make:migrations:migrate"". Message: "There are no commands defined in the "make:migrations" namespace.
-
-Did you mean one of these?
-    doctrine:migrations
-    make
-    make:docker
-    make:security
-    make:serializer"
